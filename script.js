@@ -2,7 +2,6 @@ import { loadAPOD } from './modules/apod.js';
 import { loadRandomWiki } from './modules/wiki.js';
 import { loadOnThisDay } from './modules/history.js';
 
-// Set greeting based on time of day
 function setGreeting() {
   const hour = new Date().getHours();
   let greetingText = '';
@@ -12,7 +11,6 @@ function setGreeting() {
   document.getElementById('greeting').textContent = `${greetingText}, curious mind`;
 }
 
-// Initialize all content
 async function initDashboard() {
   setGreeting();
   await loadAPOD();
@@ -20,17 +18,14 @@ async function initDashboard() {
   await loadRandomWiki();
 }
 
-// Surprise Me button: fetch a new random Wikipedia article
 function setupEventListeners() {
   const surpriseBtn = document.getElementById('surpriseBtn');
   surpriseBtn.addEventListener('click', () => {
-    // reset wiki display, show loading, fetch new
     document.getElementById('wikiContent').style.display = 'none';
     loadRandomWiki();
   });
 }
 
-// Run when page loads
 window.addEventListener('DOMContentLoaded', () => {
   setupEventListeners();
   initDashboard();

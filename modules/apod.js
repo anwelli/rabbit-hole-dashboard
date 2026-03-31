@@ -5,16 +5,13 @@ const NASA_API_KEY = 'vWYibmNW8YaYzNdnsXpczz3MxzT4PtKzlKE7BRe0';
 const NASA_URL = `https://api.nasa.gov/planetary/apod?api_key=${NASA_API_KEY}`;
 
 export async function loadAPOD() {
-  // Check cache first
   const cached = getFromLocalStorage('nasa');
   if (cached) {
     displayAPOD(cached);
     return;
   }
-  
   showLoading('nasaSpinner', true);
   hideError('nasaError');
-  
   try {
     const response = await fetch(NASA_URL);
     if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -34,18 +31,15 @@ function displayAPOD(data) {
   const img = document.getElementById('nasaImage');
   const title = document.getElementById('nasaTitle');
   const explanation = document.getElementById('nasaExplanation');
-  
   if (data.media_type === 'image') {
     img.src = data.url;
     img.alt = data.title;
     img.style.display = 'block';
   } else {
-    // fallback for videos
-    img.src = 'https://via.placeholder.com/800x400?text=Check+NASA+video+of+the+day';
+    img.src = 'https://via.placeholder.com/800x400?text=NASA+Video+of+the+Day';
   }
   title.textContent = data.title;
   explanation.textContent = data.explanation;
-  
   document.getElementById('nasaContent').style.display = 'block';
   hideError('nasaError');
 }

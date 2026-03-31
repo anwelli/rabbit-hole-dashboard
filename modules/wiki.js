@@ -4,9 +4,7 @@ export async function loadRandomWiki() {
   showLoading('wikiSpinner', true);
   hideError('wikiError');
   document.getElementById('wikiContent').style.display = 'none';
-  
   const url = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
-  
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error('Wikipedia not responding');
@@ -25,7 +23,6 @@ function displayWiki(data) {
   document.getElementById('wikiExtract').textContent = data.extract || 'No summary available.';
   const link = document.getElementById('wikiLink');
   link.href = data.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(data.title)}`;
-  
   document.getElementById('wikiContent').style.display = 'block';
   hideError('wikiError');
 }

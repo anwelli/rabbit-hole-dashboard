@@ -5,15 +5,13 @@ export async function loadOnThisDay() {
   const month = String(today.getMonth() + 1).padStart(2,'0');
   const day = String(today.getDate()).padStart(2,'0');
   const url = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${month}/${day}`;
-  
   showLoading('historySpinner', true);
   hideError('historyError');
-  
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error('History feed error');
     const data = await response.json();
-    displayHistory(data.events.slice(0, 5)); // show top 5 events
+    displayHistory(data.events.slice(0, 5));
   } catch (error) {
     console.error('History error:', error);
     showError('historyError', 'Historical events unavailable right now.');
