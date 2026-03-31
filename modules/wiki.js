@@ -1,7 +1,10 @@
-import { showLoading, showError } from './ui.js';
+import { showLoading, showError, hideError } from './ui.js';
 
 export async function loadRandomWiki() {
   showLoading('wikiSpinner', true);
+  hideError('wikiError');
+  document.getElementById('wikiContent').style.display = 'none';
+  
   const url = 'https://en.wikipedia.org/api/rest_v1/page/random/summary';
   
   try {
@@ -24,6 +27,5 @@ function displayWiki(data) {
   link.href = data.content_urls?.desktop?.page || `https://en.wikipedia.org/wiki/${encodeURIComponent(data.title)}`;
   
   document.getElementById('wikiContent').style.display = 'block';
-  // hide any previous error
-  document.getElementById('wikiError').style.display = 'none';
+  hideError('wikiError');
 }

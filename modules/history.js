@@ -1,4 +1,4 @@
-import { showLoading, showError } from './ui.js';
+import { showLoading, showError, hideError } from './ui.js';
 
 export async function loadOnThisDay() {
   const today = new Date();
@@ -7,6 +7,8 @@ export async function loadOnThisDay() {
   const url = `https://api.wikimedia.org/feed/v1/wikipedia/en/onthisday/events/${month}/${day}`;
   
   showLoading('historySpinner', true);
+  hideError('historyError');
+  
   try {
     const response = await fetch(url);
     if (!response.ok) throw new Error('History feed error');
@@ -29,5 +31,5 @@ function displayHistory(events) {
     list.appendChild(li);
   });
   list.style.display = 'block';
-  document.getElementById('historyError').style.display = 'none';
+  hideError('historyError');
 }
