@@ -18,10 +18,10 @@
     </header>
 
     <!-- NASA Section -->
-    <section class="nasa-card card" id="nasaCard">
+    <section class="nasa-card card">
       <div class="loading-spinner" id="nasaSpinner">Loading space picture...</div>
       <div id="nasaContent" style="display: none;">
-        <img id="nasaImage" class="nasa-image" alt="NASA Astronomy Picture of the Day">
+        <img id="nasaImage" class="nasa-image" alt="NASA APOD">
         <div class="nasa-text">
           <h2 id="nasaTitle"></h2>
           <p id="nasaExplanation"></p>
@@ -30,18 +30,18 @@
       <div id="nasaError" class="error-message" style="display: none;"></div>
     </section>
 
-    <!-- Two-column layout on desktop, stacked on mobile -->
-    <div class="two-columns">
-      <!-- Left: Today in History -->
-      <section class="history-card card">
+    <!-- Three columns -->
+    <div class="three-columns">
+      <!-- History -->
+      <div class="history-card card">
         <h2>📅 Today in History</h2>
         <div class="loading-spinner" id="historySpinner">Fetching history...</div>
         <ul id="historyList" style="display: none;"></ul>
         <div id="historyError" class="error-message" style="display: none;"></div>
-      </section>
+      </div>
 
-      <!-- Right: Random Wikipedia + Surprise Button -->
-      <section class="wiki-card card">
+      <!-- Wikipedia -->
+      <div class="wiki-card card">
         <h2>📖 Random Wikipedia</h2>
         <div class="loading-spinner" id="wikiSpinner">Finding something interesting...</div>
         <div id="wikiContent" style="display: none;">
@@ -50,11 +50,24 @@
           <a id="wikiLink" href="#" target="_blank" rel="noopener">Read more →</a>
         </div>
         <div id="wikiError" class="error-message" style="display: none;"></div>
-        <button id="surpriseBtn" class="surprise-btn">🎲 Surprise Me</button>
-      </section>
+      </div>
+
+      <!-- Surprise Me: Button + Weather -->
+      <div class="surprise-card card">
+        <h2>🎲 Surprise Me</h2>
+        <button id="surpriseBtn" class="action-btn">🎲 Get new article</button>
+        <h3 class="weather-heading">🌤️ Weather</h3>
+        <div class="weather-section">
+          <div class="loading-spinner" id="weatherSpinner">Fetching weather...</div>
+          <div id="weatherContent" style="display: none;">
+            <div id="weatherMessage" class="surprise-message"></div>
+            <div id="weatherAnimation"></div>
+          </div>
+          <div id="weatherError" class="error-message" style="display: none;"></div>
+        </div>
+      </div>
     </div>
   </div>
-  <!-- Only ONE script tag, with type="module" -->
   <script type="module" src="script.js"></script>
 </body>
 </html>

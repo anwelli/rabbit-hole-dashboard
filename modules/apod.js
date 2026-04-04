@@ -20,7 +20,7 @@ export async function loadAPOD() {
     displayAPOD(data);
   } catch (error) {
     console.error('NASA error:', error);
-    showError('nasaError', 'Could not load space picture. Try again later.');
+    showError('nasaError', 'Could not load space picture.');
     document.getElementById('nasaContent').style.display = 'none';
   } finally {
     showLoading('nasaSpinner', false);
@@ -28,18 +28,9 @@ export async function loadAPOD() {
 }
 
 function displayAPOD(data) {
-  const img = document.getElementById('nasaImage');
-  const title = document.getElementById('nasaTitle');
-  const explanation = document.getElementById('nasaExplanation');
-  if (data.media_type === 'image') {
-    img.src = data.url;
-    img.alt = data.title;
-    img.style.display = 'block';
-  } else {
-    img.src = 'https://via.placeholder.com/800x400?text=NASA+Video+of+the+Day';
-  }
-  title.textContent = data.title;
-  explanation.textContent = data.explanation;
+  document.getElementById('nasaImage').src = data.url;
+  document.getElementById('nasaTitle').textContent = data.title;
+  document.getElementById('nasaExplanation').textContent = data.explanation;
   document.getElementById('nasaContent').style.display = 'block';
   hideError('nasaError');
 }

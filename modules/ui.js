@@ -1,17 +1,12 @@
-export function showLoading(spinnerId, show) {
-  const spinner = document.getElementById(spinnerId);
-  if (spinner) spinner.style.display = show ? 'block' : 'none';
+export function showLoading(id, show) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = show ? 'block' : 'none';
 }
-
-export function showError(errorId, message) {
-  const errorDiv = document.getElementById(errorId);
-  if (errorDiv) {
-    errorDiv.textContent = message;
-    errorDiv.style.display = 'block';
-  }
+export function showError(id, msg) {
+  const el = document.getElementById(id);
+  if (el) { el.textContent = msg; el.style.display = 'block'; }
 }
-
-export function hideError(errorId) {
-  const errorDiv = document.getElementById(errorId);
-  if (errorDiv) errorDiv.style.display = 'none';
+export function hideError(id) {
+  const el = document.getElementById(id);
+  if (el) el.style.display = 'none';
 }

@@ -1,16 +1,13 @@
 export function saveToLocalStorage(key, data) {
   const today = new Date().toISOString().slice(0,10);
-  const item = { date: today, data: data };
-  localStorage.setItem(key, JSON.stringify(item));
+  localStorage.setItem(key, JSON.stringify({ date: today, data }));
 }
-
 export function getFromLocalStorage(key) {
   const today = new Date().toISOString().slice(0,10);
   const stored = localStorage.getItem(key);
   if (!stored) return null;
   try {
-    const parsed = JSON.parse(stored);
-    if (parsed.date === today) return parsed.data;
-    else { localStorage.removeItem(key); return null; }
-  } catch(e) { return null; }
+    const { date, data } = JSON.parse(stored);
+    return date === today ? data : null;
+  } catch { return null; }
 }
