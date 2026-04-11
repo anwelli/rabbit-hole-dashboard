@@ -1,0 +1,50 @@
+<footer class="site-footer">
+  <div class="footer-container">
+    <div class="footer-left">
+      <div class="footer-logo">
+        <span class="rabbit-icon">🐇</span>
+        <span>Daily Rabbit Hole</span>
+      </div>
+      <p class="footer-tagline">A daily dose of curiosity & wonder</p>
+    </div>
+
+    <div class="footer-center">
+      <p>© <span id="footer-year"></span> <strong>Anwelli Happiness Azuka</strong></p>
+      <p>📘 WDD 330 – Final Project</p>
+      <p>🚀 BYU-Pathway Worldwide</p>
+    </div>
+
+    <div class="footer-right">
+      <p>✨ <strong>Tech Stack</strong></p>
+      <div class="tech-icons">
+        <span>🌐 HTML5</span>
+        <span>🎨 WDD33O</span>
+        <span>⚡ JavaScript (ES6+)</span>
+      </div>
+      <div class="api-icons">
+        <span>🪐 NASA API</span>
+        <span>📖 Wikipedia API</span>
+        <span>🌦️ OpenMeteo</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <button id="backToTop" class="back-to-top">↑ Back to Top</button>
+    <p class="footer-credit">Built with ☕ and curiosity</p>
+  </div>
+</footer>
+
+<script>
+  // Set current year
+  const yearSpan = document.getElementById('footer-year');
+  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
+
+  // Back to Top button
+  const backToTopBtn = document.getElementById('backToTop');
+  if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+</script>
