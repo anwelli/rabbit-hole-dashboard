@@ -1,4 +1,5 @@
 import { showLoading, showError, hideError } from './ui.js';
+import { saveToLocalStorage } from './storage.js';   // ✅ import for localStorage
 
 export async function loadWeather() {
   showLoading('weatherSpinner', true);
@@ -15,8 +16,7 @@ export async function loadWeather() {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
       
-      // Optional: Reverse geocode to get a human‑readable city name
-      // Using OpenMeteo's geocoding API (free, no key)
+      // Reverse geocode to get a human‑readable city name
       try {
         const geoRes = await fetch(`https://geocoding-api.open-meteo.com/v1/search?latitude=${lat}&longitude=${lon}&count=1`);
         if (geoRes.ok) {
@@ -38,6 +38,14 @@ export async function loadWeather() {
       lon = -0.1278;
       locationName = "London (fallback)";
     }
+
+    // ✅ Save location to localStorage (second/third property)
+    saveToLocalStorage('weatherLocation', {
+      lat: lat,
+      lon: lon,
+      name: locationName,
+      timestamp: Date.now()
+    });
 
     // Step 2: Fetch weather data for these coordinates
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&hourly=temperature_2m,relative_humidity_2m&timezone=auto`;
